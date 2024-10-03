@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Set Security Questions{% endblock %}
+
+{% block content %}
+
+<h2>Set Your Security Questions</h2>
+<form method="POST" action="{{ url_for('set_security_questions') }}">
+    <label for="question1">Security Question 1:</label><br>
+    <input type="text" id="question1" name="question1" required><br><br>
+
+    <label for="answer1">Answer to Security Question 1:</label><br>
+    <input type="text" id="answer1" name="answer1" required><br><br>
+
+    <label for="question2">Security Question 2:</label><br>
+    <input type="text" id="question2" name="question2" required><br><br>
+
+    <label for="answer2">Answer to Security Question 2:</label><br>
+    <input type="text" id="answer2" name="answer2" required><br><br>
+
+    <input type="submit" value="Set Questions">
+</form>
+{% endblock %}

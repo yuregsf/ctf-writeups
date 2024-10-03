@@ -1,0 +1,24 @@
+PUT /users -> CreateUser
+    body:
+    {
+        "username": "USERNAME",
+        "password": "PASSWORD",
+        "page": "YOUR_FAVORITE_PAGE_URL",
+    }
+    returns:
+        None
+
+POST /users/login -> Login
+    body:
+        {
+            "username": "USERNAME",
+            "password": "PASSWORD",
+        }
+    returns:
+        {"X-AUTH-TOKEN": "AUTH_TOKEN_STR"}
+
+GET /users/page/{username} -> ShowPage
+    headers:
+        X-AUTH-TOKEN: AUTH_TOKEN_STR
+    returns:
+        PAGE_HTML_STR

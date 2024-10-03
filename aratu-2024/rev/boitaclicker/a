@@ -1,0 +1,12 @@
+xor_data  0x32A2DF2D992B0000
+param =   0x32A2DF2D992B0000
+
+00002B992DDFA232
+0xCD5D20D266D4FFFF
+
+hwid = "HID\\VID_6969&PID_1337&REV_0420&MI_37"
+
+MI_37 talvez??
+0H 	EAX Maximum Input Value for Basic CPUID Information. EBX “Genu” ECX “ntel” EDX “ineI”
+
+01H 	EAX Version Information: Type, Family, Model, and Stepping ID (see Figure 3-6). EBX Bits 07-00: Brand Index. Bits 15-08: CLFLUSH line size (Value ∗ 8 = cache line size in bytes; used also by CLFLUSHOPT). Bits 23-16: Maximum number of addressable IDs for logical processors in this physical package*. Bits 31-24: Initial APIC ID**. ECX Feature Information (see Figure 3-7 and Table 3-10). EDX Feature Information (see Figure 3-8 and Table 3-11). NOTES: * Thenearestpower-of-2integerthatisnotsmallerthanEBX[23:16]isthenumberofuniqueinitialAPIC IDs reserved for addressing different logical processors in a physical package. This field is only valid if CPUID.1.EDX.HTT[bit 28]= 1. ** The 8-bit initial APIC ID in EBX[31:24] is replaced by the 32-bit x2APIC ID, available in Leaf 0BH and Leaf 1FH.

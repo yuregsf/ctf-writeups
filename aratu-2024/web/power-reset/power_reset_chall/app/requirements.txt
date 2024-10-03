@@ -1,0 +1,3 @@
+Flask
+Bcrypt
+flask-bcrypt

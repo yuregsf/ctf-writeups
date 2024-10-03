@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - PowerReset</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</head>
+<body class="dark-theme">
+<nav>
+  <h1>
+    <button onclick="window.location.href='/login'" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0;">
+        PowerReset
+    </button>
+  </h1>
+    <ul>
+        {% if g.user %}
+            <li><span>{{ g.user['username'] }}</span></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        {% else %}
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<section class="content">
+    <header>{% block header %}{% endblock %}</header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</section>
+<footer>
+    <p>&copy; Power Reset 2024</p>
+</footer>
+</body>
+</html>

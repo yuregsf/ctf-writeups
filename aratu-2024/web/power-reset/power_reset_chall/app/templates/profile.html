@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Welcome, AAAA</h2>
+    <p>This is your profile page.</p>
+
+    {% if flag %}
+    <h3>Flag: {{ flag }}</h3>
+    {% endif %}
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('set_security_questions') }}">Set Answers</a></li>
+            <li><a href="{{ url_for('forgot_password_questions') }}">Change Password</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+</section>
+{% endblock %}

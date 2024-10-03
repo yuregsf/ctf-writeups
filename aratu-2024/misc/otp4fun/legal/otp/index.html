@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTP Challenge Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 150px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TOTP Challenge Game</h1>
+    <p>Welcome to the TOTP Challenge! Your challenge is to input six TOTP base32 encoded secrets. All of the secrets should generate the code 133737 at the current time.</p>
+    <p>Have fun!</p>
+    <div class="input-container">
+        <input type="text" id="secret1" placeholder="Secret 1">
+        <input type="text" id="secret2" placeholder="Secret 2">
+        <input type="text" id="secret3" placeholder="Secret 3">
+        <input type="text" id="secret4" placeholder="Secret 4">
+        <input type="text" id="secret5" placeholder="Secret 5">
+        <input type="text" id="secret6" placeholder="Secret 6">
+    </div>
+    <button onclick="submitSecrets()">Submit</button>
+    <div id="result"></div>
+
+    <script>
+        async function submitSecrets() {
+            const secrets = [];
+            for (let i = 1; i <= 6; i++) {
+                secrets.push(document.getElementById(`secret${i}`).value);
+            }
+
+            const response = await fetch('/api/secrets', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ secrets }),
+            });
+
+            const data = await response.json();
+            const resultElement = document.getElementById('result');
+            
+            if (data.result.startsWith('You win')) {
+                resultElement.style.color = 'green';
+                resultElement.textContent = data.result;
+            } else {
+                resultElement.style.color = 'red';
+                resultElement.textContent = data.result || 'An error occurred. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
